@@ -28,6 +28,12 @@ struct ContentView: View {
                 Text("8")
                 Text("9")
             }
+            
+            ZStack {
+                Color.red.edgesIgnoringSafeArea(.all)
+                Color(red: 1, green: 0.8, blue: 0).frame(width: 200, height: 200, alignment: .center)
+                Text("Your content")
+            }
         }
     }
 }
