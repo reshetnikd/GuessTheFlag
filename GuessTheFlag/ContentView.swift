@@ -9,6 +9,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State private var showingAlert = false
+    
     var body: some View {
         VStack(spacing: 0) {
             HStack {
@@ -27,6 +30,25 @@ struct ContentView: View {
                 Text("7")
                 Text("8")
                 Text("9")
+            }
+            
+            Button("Tap me!") {
+                print("Button was tapped")
+            }
+            
+            Button("Show Alert") {
+                self.showingAlert = true
+            }.alert(isPresented: $showingAlert) {
+                Alert(title: Text("Hello SwiftUI!"), message: Text("This is some detail message"), dismissButton: .default(Text("OK")))
+            }
+            
+            Button(action: {
+                print("Edit was tapped")
+            }) {
+                HStack(spacing: 10) {
+                    Image(systemName: "pencil").renderingMode(.original)
+                    Text("Edit")
+                }
             }
             
             LinearGradient(gradient: Gradient(colors: [.white, .black]), startPoint: .top, endPoint: .bottom)
