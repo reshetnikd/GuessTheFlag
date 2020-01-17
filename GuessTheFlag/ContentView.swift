@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             HStack {
                 Text("1")
                 Text("2")
@@ -28,6 +28,12 @@ struct ContentView: View {
                 Text("8")
                 Text("9")
             }
+            
+            LinearGradient(gradient: Gradient(colors: [.white, .black]), startPoint: .top, endPoint: .bottom)
+            
+            RadialGradient(gradient: Gradient(colors: [.blue, .black]), center: .center, startRadius: 20, endRadius: 200)
+            
+            AngularGradient(gradient: Gradient(colors: [.red, .yellow, .green, .blue, .purple, .red]), center: .center)
             
             ZStack {
                 Color.red.edgesIgnoringSafeArea(.all)
