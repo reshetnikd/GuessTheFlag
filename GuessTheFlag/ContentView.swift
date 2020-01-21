@@ -19,23 +19,31 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            LinearGradient(gradient: Gradient(colors: [.blue, .black]), startPoint: .top, endPoint: .bottom).edgesIgnoringSafeArea(.all)
+            LinearGradient(gradient: Gradient(colors: [.blue, .black]), startPoint: .top, endPoint: .bottom)
+                .edgesIgnoringSafeArea(.all)
             
             VStack(spacing: 30) {
                 VStack {
-                    Text("Tap the flag of ").foregroundColor(.white)
-                    Text(countries[correctAnswer]).foregroundColor(.white).font(.largeTitle).fontWeight(.black)
+                    Text("Tap the flag of ")
+                        .foregroundColor(.white)
+                    Text(countries[correctAnswer])
+                        .foregroundColor(.white)
+                        .font(.largeTitle)
+                        .fontWeight(.black)
                 }
                 
                 ForEach(0..<3) { number in
                     Button(action: {
                         self.flagTapped(number)
                     }) {
-                        Image(self.countries[number]).renderingMode(.original).clipShape(Capsule()).overlay(Capsule().stroke(Color.black, lineWidth: 1)).shadow(color: .black, radius: 2)
+                        FlagImage(name: self.countries[number])
                     }
                 }
                 
-                Text("Score: \(playerScore)").foregroundColor(.white).font(.headline).fontWeight(.bold)
+                Text("Score: \(playerScore)")
+                    .foregroundColor(.white)
+                    .font(.headline)
+                    .fontWeight(.bold)
                 
                 Spacer()
             }
@@ -68,5 +76,18 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+    }
+}
+
+struct FlagImage: View {
+    var name: String
+    
+    var body: some View {
+        Image(name)
+            .renderingMode(.original)
+            .clipShape(Capsule())
+            .overlay(Capsule()
+                .stroke(Color.black, lineWidth: 1))
+            .shadow(color: .black, radius: 2)
     }
 }
