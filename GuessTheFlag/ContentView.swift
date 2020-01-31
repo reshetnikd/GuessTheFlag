@@ -16,7 +16,7 @@ struct ContentView: View {
     @State private var correctAnswer = Int.random(in: 0...2)
     @State private var playerScore = 0
     @State private var scoreMessage = ""
-    @State private var animationAmount = 0.0
+    @State private var animationAngle = 0.0
     @State private var opacityAmount = 1.0
     
     var body: some View {
@@ -42,7 +42,7 @@ struct ContentView: View {
                     }) {
                         if number == self.correctAnswer {
                             FlagImage(name: self.countries[number])
-                                .rotation3DEffect(.degrees(self.animationAmount), axis: (x: 0, y: 1, z: 0))
+                                .rotation3DEffect(.degrees(self.animationAngle), axis: (x: 0, y: 1, z: 0))
                         } else {
                             FlagImage(name: self.countries[number])
                                 .opacity(self.opacityAmount)
@@ -69,7 +69,7 @@ struct ContentView: View {
             scoreTitle = "Correct"
             playerScore += 1
             scoreMessage = "Your score is \(playerScore)"
-            animationAmount += 360
+            animationAngle += 360
             opacityAmount = 0.25
         } else {
             scoreTitle = "Wrong"
@@ -82,6 +82,7 @@ struct ContentView: View {
     func askQuestion() {
         countries.shuffle()
         correctAnswer = Int.random(in: 0...2)
+        opacityAmount = 1.0
     }
 }
 
